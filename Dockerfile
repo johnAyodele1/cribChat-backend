@@ -1,23 +1,23 @@
-# Use official Node.js LTS image
+# Use official Node.js LTS image as base
 FROM node:18
 
-# Create app directory
-WORKDIR app/
+# Set working directory
+WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install app dependencies
-RUN npm install --production
+# Install dependencies
+RUN npm install
 
-# Install resend package separately to avoid version issues
-# Removed resend install as it was causing issues and is no longer in package.json
-
-# Bundle app source
+# Copy the rest of the application code
 COPY . .
 
-# Expose port (adjust if your app uses a different port)
+# Expose the port the app runs on
 EXPOSE 3000
 
-# Start the app
-CMD ["npm", "start"]
+# Set environment variables (optional, can be overridden at runtime)
+ENV NODE_ENV=production
+
+# Start the server
+CMD ["node", "server.js"]
