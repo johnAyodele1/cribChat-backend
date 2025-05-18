@@ -7,7 +7,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://crib-chat.vercel.app/",
   })
 );
 app.use("/users", userRoutes);
