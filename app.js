@@ -7,7 +7,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://crib-chat.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
