@@ -19,7 +19,7 @@ const app = require("./app");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://crib-chat.vercel.app/",
+    origin: "crib-chat.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -27,7 +27,10 @@ io.on("connection", (socket) => {
   io.emit("connected", "A user joineed");
   socket.on("joinRoom", (data) => {
     socket.join(data);
-    io.to(data).emit("ifJoined", "A user joined");
+    socket.to(data).emit("ifJoined", "A user joined");
+  });
+  socket.on("message", (data) => {
+    io.to(data.activeRoom).emit("resMsg", data);
   });
 });
 
