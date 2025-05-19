@@ -19,7 +19,7 @@ const app = require("./app");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "crib-chat.vercel.app",
+    origin: "https://crib-chat.vercel.app",
     methods: ["GET", "POST"],
   },
 });
